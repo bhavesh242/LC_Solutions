@@ -7,19 +7,13 @@ public class Leetcode739 {
         int sol[] = new int[T.length];
         Stack<Integer> st = new Stack<Integer>();
         for(int i=0;i<T.length;i++){
-            if(st.isEmpty() || T[i] <= T[st.peek()]){
-                st.push(i);
+            while(!st.empty() && T[st.peek()] < T[i])
+            {
+                int index = st.pop();
+                sol[index] = i - index;
             }
-            else{
-                while(!st.empty() && T[st.peek()] < T[i])
-                {
-                    int index = st.pop();
-                    sol[index] = i - index;
-                }
-                st.push(i);
+            st.push(i);
             }   
-        }
-        
         return sol;
     }
 }
