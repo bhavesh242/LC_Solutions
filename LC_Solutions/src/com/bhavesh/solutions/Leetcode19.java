@@ -22,6 +22,7 @@ public class Leetcode19 {
 		
 		//delete the node left pointer is pointing to
 		left.next = left.next.next;
+		//return dummy.next ListNode
 		return dummy.next;
 	}
 }
