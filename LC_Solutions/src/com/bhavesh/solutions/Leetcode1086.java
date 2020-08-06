@@ -8,6 +8,7 @@ public class Leetcode1086 {
 
 	public int[][] highFive(int[][] items) {
 
+		//Sort the items by their id's first and then by their scores for same Id's
 		Arrays.sort(items, new Comparator<int[]>() {
 			public int compare(int[] a, int[] b) {
 				if (a[0] != b[0]) {
@@ -17,6 +18,7 @@ public class Leetcode1086 {
 				}
 			}
 		});
+		//For each Id take top 5 scores and count their mean and and store in an array [id, mean]
 		ArrayList<int[]> op = new ArrayList<int[]>();
 		int id = items[0][0];
 		int count = 0;
