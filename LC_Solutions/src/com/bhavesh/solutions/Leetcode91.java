@@ -49,7 +49,7 @@ public class Leetcode91 {
 				count += c1;
 			}
 			/*
-			 * If twoDigits ar between 10 and 26 inclusive, they too add to a valid encoding
+			 * If twoDigits are between 10 and 26 inclusive, they too add to a valid encoding
 			 */
 
 			if (twoDigit >= 10 && twoDigit <= 26) {
