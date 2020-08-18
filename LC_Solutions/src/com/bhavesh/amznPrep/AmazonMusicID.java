@@ -1,6 +1,7 @@
 package com.bhavesh.amznPrep;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class AmazonMusicID {
 	public static void main(String[] args) {
@@ -13,6 +14,7 @@ public class AmazonMusicID {
 		System.out.println(new AmazonMusicID().twoSumUnique(90,5, songDurations));
 	}
 	public int[] twoSumUnique(int rideDuration, int numSongs, ArrayList<Integer> songDurations) {
+		Collections.sort(songDurations);
 		int low = 0, high = numSongs - 1;
 		while (low < high) {
 			int sum = songDurations.get(low) + songDurations.get(high);
