@@ -1,8 +1,15 @@
 package com.bhavesh.amznPrep;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 public class AmznTwoSumUniquePairs {
+	public static void main(String[] args) {
+		System.out.println(new AmznTwoSumUniquePairs().getUniquePairsOpti(new int[]{1,5,2,4,5,1,4,2}, 6)); 
+	}
 	public int twoSum6(int[] nums, int target) {
 		// Write your code here
 
@@ -35,5 +42,23 @@ public class AmznTwoSumUniquePairs {
 		}
 
 		return count;
+	}
+	public  int getUniquePairsOpti(int[] nums, int target){
+	    Set<Integer> seen =  new HashSet<>();
+	    HashSet<Integer> map = new HashSet<>();
+	    int ans = 0;
+	    for (int num : nums){
+	        if (map.contains(num)){
+	            int key = num;
+	            if (! seen.contains(key)){
+	                ans++;
+	                seen.add(key);
+	            }
+	        } else {
+	            map.add(target-num);
+	        }
+	    }
+	    return ans;
+
 	}
 }
