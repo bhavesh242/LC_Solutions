@@ -27,7 +27,6 @@ public class Leetcode252 {
 		}
 
 		return true;
-
 	}
 }
-
+	
