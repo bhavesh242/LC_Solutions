@@ -9,6 +9,7 @@ public class Leetcode1287 {
 				return arr[i];
 			}
 		}
+		
 		return 0;
 	}
 }
