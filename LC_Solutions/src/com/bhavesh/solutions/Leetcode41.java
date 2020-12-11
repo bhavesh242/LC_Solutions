@@ -1,6 +1,8 @@
 package com.bhavesh.solutions;
 
 class Leetcode41 {
+	
+	//Loosely based on pigeonhole principle. Need some preprocessing though
 	public int firstMissingPositive(int[] nums) {
 		int n = nums.length;
 		boolean oneFlag = false;
