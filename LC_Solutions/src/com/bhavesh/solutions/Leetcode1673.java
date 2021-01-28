@@ -5,12 +5,18 @@ import java.util.Deque;
 
 public class Leetcode1673 {
 	public int[] mostCompetitive(int[] nums, int k) {
+		//Concept used in monotone stack
 		if (nums.length == k)
 			return nums;
+		//Deque is used as a stack alternative, stack can also be used
 		Deque<Integer> dq = new ArrayDeque<Integer>();
+		
 		int[] res = new int[k];
 
+		//For each element
 		for (int i = 0, n = nums.length; i < n; i++) {
+			/*While deque is not empty, keep removing larger elements from stack/dequeue end such that there are 
+			sufficient elements remaining for size k. This is handled by condition (n - (i+1) + dq.size() >=k)*/
 			while (!dq.isEmpty() && nums[i] < nums[dq.peekLast()] && (n - i - 1) + dq.size() >= k)
 				dq.removeLast();
 			dq.addLast(i);
