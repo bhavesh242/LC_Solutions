@@ -1,5 +1,7 @@
 package com.bhavesh.solutions;
 
+import java.util.HashMap;
+
 public class Leetcode325 {
 	public int maxSubArrayLen(int[] nums, int k) {
 		// Using Hashmap + prefix sum
