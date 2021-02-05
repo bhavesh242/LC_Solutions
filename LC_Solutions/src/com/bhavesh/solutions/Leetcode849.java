@@ -18,7 +18,7 @@ public class Leetcode849 {
 					maxDist = Math.max(maxDist, (numZeroes + 1) / 2);
 
 				}
-			}
+			} 
 		}
 		if (seats[i - 1] == 0) {
 			maxDist = Math.max(numZeroes, maxDist);
