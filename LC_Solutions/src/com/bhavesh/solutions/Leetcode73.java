@@ -50,7 +50,7 @@ public class Leetcode73 {
 				matrix[0][c] = 0;
 			}
 		}
-
+		//Set first column to 0 based on flag
 		if (fCol) {
 			for (int r = 0; r < R; r++) {
 				matrix[r][0] = 0;
