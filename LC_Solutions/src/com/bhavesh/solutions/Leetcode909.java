@@ -6,6 +6,7 @@ import java.util.Queue;
 public class Leetcode909 {
 	public int snakesAndLadders(int[][] board) {
 
+		//Simple BFS
 		int N = board.length;
 		boolean[] visited = new boolean[N * N + 1];
 		Queue<Integer> queue = new LinkedList<Integer>();
