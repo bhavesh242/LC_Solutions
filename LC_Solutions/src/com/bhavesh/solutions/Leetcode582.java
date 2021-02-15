@@ -30,7 +30,17 @@ public class Leetcode582 {
 				queue.add(x);
 			}
 		}
-
+		// Stack<Integer> queue = new Stack<Integer>();
+		// queue.push(kill);
+		// while(!queue.isEmpty())
+		// {
+		// int process = queue.pop();
+		// list.add(process);
+		// for(int x : graph.getOrDefault(process, new ArrayList<Integer>()))
+		// {
+		// queue.push(x);
+		// }
+		// }
 		return list;
 	}
 }
