@@ -26,4 +26,16 @@ public class Leetcode11 {
 		}
 		return maxArea;
 	}
+
+	// Code 2
+	public int maxArea2(int[] height) {
+		int left = 0, right = height.length - 1;
+		int globalMax = 0;
+		while (left < right) {
+			int minHeight = height[height[left] < height[right] ? left++ : right--];
+			globalMax = Math.max(globalMax, minHeight * (right - left + 1));
+		}
+
+		return globalMax;
+	}
 }
