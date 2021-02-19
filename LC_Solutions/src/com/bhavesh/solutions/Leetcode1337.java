@@ -15,7 +15,7 @@ public class Leetcode1337 {
 			}
 			return b[0] - a[0];
 		});
-
+		
 		//For each row, Use binary search to find number of 1's (strength) 
 		for (int i = 0; i < R; i++) {
 			int strength = binarySearch(mat[i], C);
