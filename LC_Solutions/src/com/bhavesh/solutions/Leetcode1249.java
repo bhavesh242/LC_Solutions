@@ -1,5 +1,7 @@
 package com.bhavesh.solutions;
 
+import java.util.Stack;
+
 public class Leetcode1249 {
 	public String minRemoveToMakeValid(String s) {
 		StringBuffer s1 = new StringBuffer();
@@ -27,4 +29,32 @@ public class Leetcode1249 {
 		return s2.reverse().toString();
 	}
 
+	// Approach 2 : Stacks
+	public String minRemoveToMakeValid1(String s) {
+
+		char ans[] = s.toCharArray();
+		int i = 0;
+		Stack<Integer> st = new Stack<Integer>();
+		while (i < ans.length) {
+			if (ans[i] == '(') {
+				st.push(i);
+				ans[i] = '#';
+			} else if (ans[i] == ')') {
+				if (st.isEmpty()) {
+					ans[i] = '#';
+				} else {
+					ans[st.pop()] = '(';
+				}
+			}
+			i++;
+		}
+		StringBuffer str = new StringBuffer();
+		for (int j = 0; j < ans.length; j++) {
+			if (ans[j] == '#')
+				continue;
+			str.append(ans[j]);
+		}
+
+		return str.toString();
+	}
 }
