@@ -37,4 +37,25 @@ public class Leetcode253 {
 		// Final heap size is the no. of meeting rooms required
 		return minHeap.size();
 	}
+	
+	
+	public int minMeetingRooms_easier(int[][] intervals) {
+        
+        Arrays.sort(intervals, (a,b) -> (a[0] - b[0]));
+        PriorityQueue<Integer> pq = new PriorityQueue<Integer>();
+        
+        for(int i=0;i<intervals.length;i++)
+        {
+            if(!pq.isEmpty() &&  (pq.peek()<=intervals[i][0]))
+            {
+                pq.poll();   
+            }
+            
+            pq.add(intervals[i][1]);
+            
+        }
+        
+        
+        return pq.size();
+    }
 }
