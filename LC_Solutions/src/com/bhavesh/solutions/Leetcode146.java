@@ -4,8 +4,14 @@ import java.util.HashMap;
 
 public class Leetcode146 {
 
+
 }
 
+/*The main idea behind the design of our LRU cache is to have a doubly linked list with a default
+  head and a tail where the most recently items will be near the head and the least recently items near the 
+  tail. Whenever get is called on a key, it's respective node will be removed from it's current position
+ and placed near the head. Similarly newly added or updated nodes will put near head. When the  cache is full,
+ we simply remove node near the tail. A kwy to ndoe mapping is stored using a HashMap*/
 class LRUCache {
 
 	DLL head;
