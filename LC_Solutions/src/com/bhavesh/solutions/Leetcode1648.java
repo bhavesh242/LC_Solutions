@@ -5,40 +5,56 @@ import java.util.Arrays;
 public class Leetcode1648 {
 	public int maxProfit(int[] inventory, int orders) {
 
-		// We will greedily add most expensive balls to our profit
+		/*
+		 * Greedy approach, we reverse sort the inventory table and we will pick the
+		 * most expensive balls first
+		 */
 
+		/*
+		 * We compare the value of this ball and value of the enxt ball and keep a count
+		 * of all the balls we have covered and add these balls to our cost untill all
+		 * the orders have been completed
+		 */
 		Arrays.sort(inventory);
 		int n = inventory.length - 1;
-
-		// Count is to maintain how many different colored balls at once we add to our
-		// order
 		int count = 1;
+		long total = 0;
 
-		long ans = 0;
 		while (orders > 0) {
+
+			/*
+			 * If we bring down all the balls to the value of next ball and stii order would
+			 * be not completed or exactly completed, just bring down all balls to the next
+			 * ball's value and all to total
+			 */
 			if (n > 0 && orders >= count * (inventory[n] - inventory[n - 1])) {
-				ans += count * getSum(inventory[n], inventory[n - 1]);
+				total += count * getSum(inventory[n], inventory[n - 1]);
 				orders -= count * (inventory[n] - inventory[n - 1]);
 			}
 
-			// This is a special case where we need to complete remianer of order but need
-			// not add all the preceding balls to order as it is limited
+			/*
+			 * If the remaining orders are little such that you dont have to bring down
+			 * every ball to the next ball's value
+			 */
 			else {
+				// Check what value you need to bring the current covered balls to
 				long a = orders / count;
-				ans += count * getSum(inventory[n], inventory[n] - a);
+				// Add these decremented values to the total
+				total += count * getSum(inventory[n], inventory[n] - a);
+				// Check for remainder orders
 				long b = orders % count;
-				ans += b * (inventory[n] - a);
+				total += b * (inventory[n] - a);
 				orders = 0;
-			}
-			ans = ans % 1000000007;
-			n--;
-			count++;
-		}
 
-		return (int) ans % 1000000007;
+			}
+			total %= 1000000007;
+			count++;
+			n--;
+		}
+		return (int) total % 1000000007;
 	}
 
 	public long getSum(long a, long b) {
-		return a * (a + 1) / 2 - (b + 1) * b / 2;
+		return a * (a + 1) / 2 - b * (b + 1) / 2;
 	}
 }
