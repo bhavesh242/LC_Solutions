@@ -12,7 +12,7 @@ public class Leetcode76 {
 		// The minimum substring length cannot be more than s.length, you can use
 		// Integer.max_val as well
 		int minLen = s.length() + 1;
-		// To sreturn our result
+		// To return our result
 		String result = "";
 		// This variable is used to check if we have covered all elements of t in the
 		// substring
