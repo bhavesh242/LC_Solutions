@@ -6,6 +6,10 @@ import java.util.HashSet;
 import java.util.List;
 
 public class Leetcode140 {
+}
+
+//DFS with Memoization
+class Sol140_Sol1 {
 	HashSet<String> wordSet;
 	HashMap<String, List<List<String>>> memo;
 
@@ -62,4 +66,38 @@ public class Leetcode140 {
 		return memo.get(s);
 
 	}
+}
+
+//DFS with Memoization done differently
+class Sol_140_2 {
+	public List<String> wordBreak(String s, List<String> wordDict) {
+		HashMap<String, List<String>> cache = new HashMap<String, List<String>>();
+		HashSet<String> wordSet = new HashSet<String>(wordDict);
+		return wordBreak(s, wordSet, cache);
+
+	}
+
+	public List<String> wordBreak(String s, HashSet<String> wordSet, HashMap<String, List<String>> cache) {
+		if (cache.containsKey(s)) {
+			return cache.get(s);
+		}
+
+		ArrayList<String> res = new ArrayList<String>();
+		if (s.length() == 0) {
+			res.add("");
+			return res;
+		}
+		for (int i = 1; i <= s.length(); i++) {
+			String pref = s.substring(0, i);
+			if (wordSet.contains(pref)) {
+				List<String> suffixes = wordBreak(s.substring(i), wordSet, cache);
+				for (String suffix : suffixes) {
+					res.add(pref + (suffix.isEmpty() ? "" : " ") + suffix);
+				}
+			}
+		}
+		cache.put(s, res);
+		return cache.get(s);
+	}
+
 }
