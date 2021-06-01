@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Leetcode472 {
 
@@ -39,6 +40,7 @@ public class Leetcode472 {
 	}
 
 	class Solution2 {
+		//Word Break with Dictionary
 		public List<String> findAllConcatenatedWordsInADict(String[] words) {
 			List<String> ans = new ArrayList<String>();
 			HashSet<String> prevWords = new HashSet<String>();
@@ -77,9 +79,67 @@ public class Leetcode472 {
 			return dp[word.length()];
 		}
 	}
-	
-	class Solution3
-	{
-		
+
+//Solution 3 : Trie with DFS
+class Solution3 {
+		public List<String> findAllConcatenatedWordsInADict(String[] words) {
+			TrieNode root = new TrieNode();
+
+			for (String word : words) {
+				addWord(word, root);
+			}
+
+			List<String> res = new ArrayList<String>();
+			for (String word : words) {
+				if (testWord(word, root, 0, 0)) {
+					res.add(word);
+				}
+			}
+
+			return res;
+		}
+
+		public boolean testWord(String word, TrieNode root, int index, int count) {
+			if (index == word.length()) {
+				return count >= 2;
+			}
+
+			TrieNode cur = root;
+			for (int i = index; i < word.length(); i++) {
+				if (cur.child[word.charAt(i) - 'a'] == null) {
+					return false;
+				}
+				cur = cur.child[word.charAt(i) - 'a'];
+
+				if (cur.isEnd) {
+					if (testWord(word, root, i + 1, count + 1)) {
+						return true;
+					}
+				}
+			}
+
+			return false;
+		}
+
+		public void addWord(String word, TrieNode root) {
+			TrieNode cur = root;
+			for (int i = 0; i < word.length(); i++) {
+				if (cur.child[word.charAt(i) - 'a'] == null) {
+					cur.child[word.charAt(i) - 'a'] = new TrieNode();
+				}
+				cur = cur.child[word.charAt(i) - 'a'];
+			}
+			cur.isEnd = true;
+		}
+	}
+
+	class TrieNode {
+		TrieNode[] child;
+		boolean isEnd;
+
+		TrieNode() {
+			child = new TrieNode[26];
+			isEnd = false;
+		}
 	}
 }
