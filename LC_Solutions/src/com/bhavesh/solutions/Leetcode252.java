@@ -1,32 +1,23 @@
 package com.bhavesh.solutions;
 
-import java.util.PriorityQueue;
+import java.util.Arrays;
 
 public class Leetcode252 {
+	//Sort the arrays and cjeck consecutive overlapping intervals
 	public boolean canAttendMeetings(int[][] intervals) {
-		// Build a min heap that sorts by stating time
-		if (intervals.length == 0) {
+		if (intervals == null || intervals.length == 0) {
 			return true;
 		}
-		PriorityQueue<int[]> pq = new PriorityQueue<int[]>((a, b) -> (a[0] - b[0]));
-		// Add all intervals to priorityQueue
-		for (int a[] : intervals) {
-			pq.add(a);
-		}
+		Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
+		int[] cur = intervals[0];
 
-		// Take the smallest interval as the current interval
-		int[] cur = pq.remove();
-		// Remove intervals and keep checking if they overlap with current interval
-		// If yes, return false
-		while (!pq.isEmpty()) {
-			int[] next = pq.remove();
-			if (next[0] < cur[1]) {
+		for (int i = 1; i < intervals.length; i++) {
+			int[] next = intervals[i];
+			if (cur[1] > next[0]) {
 				return false;
 			}
 			cur = next;
 		}
-
 		return true;
 	}
 }
-	
