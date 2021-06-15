@@ -2,25 +2,34 @@ package com.bhavesh.solutions;
 
 public class Leetcode706 {
 	class MyHashMap {
-		int SIZE;
-		LinkList[] bucket;
 
 		/** Initialize your data structure here. */
+
+		ListNode[] bucket;
+		int SIZE = 10000;
+
+		// The Main idea is to use buckets of linkedlist to tackle colision
 		public MyHashMap() {
-			SIZE = 10000;
-			bucket = new LinkList[SIZE];
+			bucket = new ListNode[SIZE];
 		}
 
 		/** value will always be non-negative. */
 		public void put(int key, int value) {
-			int index = getHash(key);
+			// This returns the index in the bucket array.
+			int index = getIndex(key);
+			// If the bucket is null, initialize it
 			if (bucket[index] == null) {
-				bucket[index] = new LinkList(-1, -1);
+				bucket[index] = new ListNode(-1, -1);
 			}
-			LinkList prev = findPrev(bucket[index], key);
+
+			// Find one node previous to the key we applying put on
+			ListNode prev = findPrev(bucket[index], key);
+			// If the key does not exist, create it
 			if (prev.next == null) {
-				prev.next = new LinkList(key, value);
-			} else {
+				prev.next = new ListNode(key, value);
+			}
+			// Otherwise just update the value
+			else {
 				prev.next.val = value;
 			}
 		}
@@ -30,12 +39,17 @@ public class Leetcode706 {
 		 * contains no mapping for the key
 		 */
 		public int get(int key) {
-			int index = getHash(key);
-			LinkList prev = findPrev(bucket[index], key);
+			// Calculate index and find the previous of this key
+			int index = getIndex(key);
+			ListNode prev = findPrev(bucket[index], key);
+			// If bucket is empty or key does not exist return -1
 			if (prev == null || prev.next == null) {
 				return -1;
 			}
-			return prev.next.val;
+			// otherwise return the existing value
+			else {
+				return prev.next.val;
+			}
 		}
 
 		/**
@@ -43,38 +57,42 @@ public class Leetcode706 {
 		 * for the key
 		 */
 		public void remove(int key) {
-			int index = getHash(key);
-			LinkList prev = findPrev(bucket[index], key);
+			int index = getIndex(key);
+			ListNode prev = findPrev(bucket[index], key);
+			// If bucket is empty or the key does not exist in the map, just return
 			if (prev == null || prev.next == null) {
 				return;
 			}
+			// Otherwise just set prev.next = prev.next.next;
 			prev.next = prev.next.next;
 		}
 
-		public int getHash(int key) {
+		// return the mod of the hashcode of the key
+		private int getIndex(int key) {
 			return Integer.hashCode(key) % SIZE;
 		}
 
-		public LinkList findPrev(LinkList bucket, int key) {
-			LinkList cur = bucket, prev = null;
+		// This method helps find one node previous to the key we are looking for
+		private ListNode findPrev(ListNode bucket, int key) {
+			ListNode cur = bucket, prev = null;
 			while (cur != null && cur.key != key) {
 				prev = cur;
 				cur = cur.next;
-
 			}
 			return prev;
 		}
 
-		class LinkList {
-			int key;
-			int val;
-			LinkList next;
+		// Linked List structure
+		class ListNode {
+			int key, val;
+			ListNode next;
 
-			LinkList(int key, int val) {
+			ListNode(int key, int val) {
 				this.key = key;
 				this.val = val;
 			}
 		}
+
 	}
 
 }
