@@ -1,3 +1,4 @@
+package com.bhavesh.solutions;
 import java.util.HashMap;
 import java.util.Map;
 
