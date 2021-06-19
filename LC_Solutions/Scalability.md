@@ -912,3 +912,5 @@ If a system is reliable, it is available, but if a system is available, it is no
 ***Client Server Architecture : HTTP (Request Response)***
 
 ***Peer - Peer Architecture : XMPP protocol (pusing messages)***
+XMPP is short form for Extensible Messaging Presense Protocol. It is a protocol for streaming XML elements over a neetwork to exchange messages and present information in close real time. Used my IM like whatsapp.
+Decentralized, meaning anyone can run their own XMPP server. Original protocol for XMPP is TCP, using open ended XML streams for lovg lived connections.
