@@ -65,7 +65,7 @@ public class Leetcode269 {
 				// }
 
 				
-				 /* Add edge from parent to child character and increase indegree of child
+				 /* Add an edge from parent to child character and increase indegree of child
 				 * character by one
 				 */
 				if (!graph[parent - 'a'].contains(child)) {
