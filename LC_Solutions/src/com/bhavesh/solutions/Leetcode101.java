@@ -3,7 +3,7 @@ package com.bhavesh.solutions;
 public class Leetcode101 {
 
 	
-	//Recursive Approach
+	//Recursive Approach : Check for lefts equals rights and values match
 	public boolean isSymmetric(TreeNode root) {
 
 		return helper(root, root);
