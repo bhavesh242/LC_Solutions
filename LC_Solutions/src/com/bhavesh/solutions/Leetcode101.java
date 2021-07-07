@@ -2,11 +2,14 @@ package com.bhavesh.solutions;
 
 public class Leetcode101 {
 
+	
+	//Recursive Approach
 	public boolean isSymmetric(TreeNode root) {
 
 		return helper(root, root);
 	}
 
+	
 	public boolean helper(TreeNode node1, TreeNode node2) {
 		if (node1 == null && node2 == null) {
 			return true;
