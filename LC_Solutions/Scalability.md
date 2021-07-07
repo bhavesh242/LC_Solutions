@@ -908,3 +908,9 @@ If a system is reliable, it is available, but if a system is available, it is no
 |**Hides identity of Client. Traffic routed for client and make request on behalf of client. Proxy will return response to client**|**Reverse proxy, client does not know which server it is connecting to. Websites will have their own reverse proxies. Clients will only know IP address of reverse proxy and not internal servers.**|
 |<p>- **Anonymity**</p><p>- **Caching**</p><p>- **Blocking unwanted size**</p><p>- **GeoFencing**</p>|<p>- **Load balancing**</p><p>- **Caching**</p><p>- **Logging**</p><p>- **Isolating Internal Traffic**</p>|
 
+
+***Client Server Architecture : HTTP (Request Response)***
+
+***Peer - Peer Architecture : XMPP protocol (pusing messages)***
+XMPP is short form for Extensible Messaging Presense Protocol. It is a protocol for streaming XML elements over a neetwork to exchange messages and present information in close real time. Used my IM like whatsapp.
+Decentralized, meaning anyone can run their own XMPP server. Original protocol for XMPP is TCP, using open ended XML streams for lovg lived connections.
