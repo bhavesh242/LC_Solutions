@@ -81,7 +81,7 @@ public class Leetcode269 {
 		Queue<Character> queue = new LinkedList<Character>();
 		/*
 		 * To start off our Topoligical sort bfs, start by adding all nodes with
-		 * indegree 0 to a queue
+		 * in-degree 0 to a queue
 		 */
 		for (char i = 'a'; i <= 'z'; i++) {
 			if (indegree[i - 'a'] == 0) {
