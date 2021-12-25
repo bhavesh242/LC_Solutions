@@ -6,7 +6,7 @@ public class Leetcode231 {
 			return false;
 		}
 
-		// Need to convert input to long to avoid overflow for testcases like
+		// Need to convert input to long to avoid overflow for testcases like -2^31
 		// -2147483648
 		long N = (long) n;
 		return (N & (-N)) == N;
