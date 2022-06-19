@@ -55,6 +55,13 @@ class Solution1615(object):
             then we'll need to use node with degree = 'secondMax'
             """
         else:
+            """
+            here the answer in general will be (firstMax + secondMax)
+            but if the two nodes that we're considering are connected, then we'll have to subtract 1
+            in other words, if there are atleast one such pair, whose degree = 'firstMax' and 'secondMax'
+            and they're not connected then answer is (firstMax + secondMax), else if all pairs
+            are connected to each other, then answer is (firstMax + secondMax - 1), as we'll have one common edge
+            """
             edgeCt = 0
             for road in roads:
                 if degrees[road[0]] == firstMax and degrees[road[1]] == secondMax:
