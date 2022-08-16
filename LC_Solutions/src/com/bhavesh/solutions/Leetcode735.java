@@ -1,5 +1,6 @@
 package com.bhavesh.solutions;
 
+import java.util.Arrays;
 import java.util.Stack;
 
 public class Leetcode735 {
@@ -23,12 +24,37 @@ public class Leetcode735 {
 				st.push(x);
 			}
 		}
-		int[] ans = new int[st.size()];
-		for (int i = st.size() - 1; i >= 0; i--) {
-			ans[i] = st.pop();
+
+		return st.stream().mapToInt(i -> i).toArray();
+	}
+
+	// Faster solution that uses Array instead of stacks
+	public int[] asteroidCollision2(int[] asteroids) {
+
+		int[] stack = new int[asteroids.length];
+		int index = -1;
+		for (int obj : asteroids) {
+			if (obj > 0) {
+				stack[++index] = obj;
+				continue;
+			}
+			while (index >= 0 && stack[index] > 0) {
+				if (stack[index] > -obj) {
+					obj = 0;
+					break;
+				} else if (stack[index] < -obj) {
+					index--;
+				} else {
+					index--;
+					obj = 0;
+					break;
+				}
+			}
+			if (obj != 0) {
+				stack[++index] = obj;
+			}
+
 		}
-
-		return ans;
-
+		return Arrays.copyOfRange(stack, 0, index + 1);
 	}
 }
