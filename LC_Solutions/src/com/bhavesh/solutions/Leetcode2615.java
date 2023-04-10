@@ -4,6 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Leetcode2615 {
+
+    public static void main(String[] args) {
+        distance2(new int[]{1,2,1,1, 1});
+    }
     public static long[] distance(int[] nums) {
         long result[] = new long[nums.length];
         Map<Integer, int[]> map = new HashMap<>();
@@ -34,7 +38,7 @@ public class Leetcode2615 {
     }
 
     //Alternate Solution
-    public long[] distance2(int[] arr) {
+    public static long[] distance2(int[] arr) {
         Map<Long, long[]> map = new HashMap<>();
         // [0] -> sum of indices at left of i
         // [1] -> sum of indices at right of i
@@ -57,7 +61,9 @@ public class Leetcode2615 {
             long[] temp = map.get(x);
             temp[1] -= i;  // sum of indices at right
             temp[3]--;   // right freq
-            res[i] = Math.abs(temp[0] - i * temp[2]) + Math.abs(temp[1] - i * temp[3]);
+            long leftSide = Math.abs(temp[0] - i * temp[2]);
+            long rightSide = Math.abs(temp[1] - i * temp[3]);
+            res[i] = leftSide + rightSide;
             temp[0] += i++;  // sum of indices at left
             temp[2]++;   // left freq
         }
